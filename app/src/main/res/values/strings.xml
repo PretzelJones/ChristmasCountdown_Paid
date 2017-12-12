@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Christmas Countdown</string>
     <string name="christmas">Merry Christmas</string>
-    <string name="countdown">Christmas Comes In</string>
+    <string name="countdown">Days till Christmas</string>
     <string name="days">Days</string>
 </resources>
 
