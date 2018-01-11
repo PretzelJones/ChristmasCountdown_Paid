@@ -32,16 +32,6 @@ public class MainActivity extends AppCompatActivity {
 
         super.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        /*
-        Animation animation = AnimationUtils.loadAnimation(getApplicationContext(),
-                R.anim.animate);
-
-        ImageView imageAnimation;
-        imageAnimation = findViewById(R.id.imageView);
-        imageAnimation.startAnimation(animation);
-        animation.setRepeatCount(Animation.INFINITE);
-        */
-
         mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.song);
         mediaPlayer.start();
         mediaPlayer.setLooping(true);
@@ -70,13 +60,7 @@ public class MainActivity extends AppCompatActivity {
                         diff -= minutes * (60 * 1000);
                         long seconds = diff / 1000;
                         txtTimerDay.setText("" + String.format("%02d", days));
-                        /*
-                        txtTimerHour.setText("" + String.format("%02d", hours));
-                        txtTimerMinute.setText(""
-                                + String.format("%02d", minutes));
-                        txtTimerSecond.setText(""
-                                + String.format("%02d", seconds));
-                                */
+
                     } else {
                         tvEvent.setVisibility(View.VISIBLE);
                         tvEvent.setText("The event started!");
