@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     SimpleDateFormat dateFormat = new SimpleDateFormat(
                             "yyyy-MM-dd");
-// Please here set your event date//YYYY-MM-DD
+                    //set event date//YYYY-MM-DD
                     Date futureDate = dateFormat.parse("2018-12-26");
                     Date currentDate = new Date();
                     if (!currentDate.after(futureDate)) {
