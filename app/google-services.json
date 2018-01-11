@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "490806938641",
+    "firebase_url": "https://christmas-countdown-c29b6.firebaseio.com",
+    "project_id": "christmas-countdown-c29b6",
+    "storage_bucket": "christmas-countdown-c29b6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:490806938641:android:0430eaa434e6e05d",
+        "android_client_info": {
+          "package_name": "com.bossondesign.christmascountdown"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "490806938641-fe5vriqjhtn75n6v5n44p21423e1f7fm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD96K2O2N5ut5BNr8cuTle9tCcZZ5-4EX8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

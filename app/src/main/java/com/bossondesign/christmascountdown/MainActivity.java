@@ -1,7 +1,6 @@
 package com.bossondesign.christmascountdown;
 
 import android.content.pm.ActivityInfo;
-import android.content.res.Configuration;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
@@ -32,19 +31,10 @@ public class MainActivity extends AppCompatActivity {
 
         super.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        /*
-        Animation animation = AnimationUtils.loadAnimation(getApplicationContext(),
-                R.anim.animate);
-
-        ImageView imageAnimation;
-        imageAnimation = findViewById(R.id.imageView);
-        imageAnimation.startAnimation(animation);
-        animation.setRepeatCount(Animation.INFINITE);
-        */
-
         mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.song);
         mediaPlayer.start();
         mediaPlayer.setLooping(true);
+
     }
 
     public void countDownStart() {
@@ -56,8 +46,8 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     SimpleDateFormat dateFormat = new SimpleDateFormat(
                             "yyyy-MM-dd");
-// Please here set your event date//YYYY-MM-DD
-                    Date futureDate = dateFormat.parse("2017-12-26");
+
+                    Date futureDate = dateFormat.parse("2018-12-26");
                     Date currentDate = new Date();
                     if (!currentDate.after(futureDate)) {
                         long diff = futureDate.getTime()
@@ -70,13 +60,7 @@ public class MainActivity extends AppCompatActivity {
                         diff -= minutes * (60 * 1000);
                         long seconds = diff / 1000;
                         txtTimerDay.setText("" + String.format("%02d", days));
-                        /*
-                        txtTimerHour.setText("" + String.format("%02d", hours));
-                        txtTimerMinute.setText(""
-                                + String.format("%02d", minutes));
-                        txtTimerSecond.setText(""
-                                + String.format("%02d", seconds));
-                                */
+
                     } else {
                         tvEvent.setVisibility(View.VISIBLE);
                         tvEvent.setText("The event started!");
@@ -93,12 +77,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void textViewGone() {
         findViewById(R.id.textView1).setVisibility(View.GONE);
-    }
-
-    //prevent reload on orientation change - retain state on shift
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
     }
 
     @Override
