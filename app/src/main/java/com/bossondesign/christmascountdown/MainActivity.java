@@ -7,10 +7,15 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import kotlin.jvm.internal.Intrinsics;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private Runnable runnable;
     MediaPlayer mediaPlayer;
     int length;
+    private ImageView bellImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +41,21 @@ public class MainActivity extends AppCompatActivity {
         mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.song);
         mediaPlayer.start();
         mediaPlayer.setLooping(true);
+
+
+        //bell rocking animation
+        bellImage = findViewById(R.id.imageView);
+        final Animation myRotation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.animation);
+        findViewById(R.id.imageView).setOnClickListener(new View.OnClickListener()    {
+            @Override
+            public void onClick(View arg0) {
+                bellImage.startAnimation(myRotation);
+                MediaPlayer mp = (MediaPlayer) MediaPlayer.create(MainActivity.this,R.raw.bell);
+                mp.start();
+            }
+        });
     }
+
 
     public void countDownStart() {
         handler = new Handler();
@@ -47,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
                     SimpleDateFormat dateFormat = new SimpleDateFormat(
                             "yyyy-MM-dd");
                     //set event date//YYYY-MM-DD
-                    Date futureDate = dateFormat.parse("2018-12-26");
+                    Date futureDate = dateFormat.parse("2019-12-26");
                     Date currentDate = new Date();
                     if (!currentDate.after(futureDate)) {
                         long diff = futureDate.getTime()
@@ -87,15 +107,14 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onPause() {
-
         super.onPause();
         mediaPlayer.pause();
+        mediaPlayer.release();
         length = mediaPlayer.getCurrentPosition();
     }
 
     @Override
     protected void onRestart() {
-
         super.onRestart();
         mediaPlayer.start();
         mediaPlayer.seekTo(length);

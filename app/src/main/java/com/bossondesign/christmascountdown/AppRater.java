@@ -60,7 +60,7 @@ public class AppRater {
      * Creates a new AppRater instance
      * @param context the Activity reference to use for this instance (usually the Activity you called this from)
      */
-    public AppRater(final Context context) {
+    public AppRater(final MainActivity context) {
         this(context, context.getPackageName());
     }
 
