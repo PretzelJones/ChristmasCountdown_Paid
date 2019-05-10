@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private Handler handler;
     private Runnable runnable;
     MediaPlayer mediaPlayer;
+    MediaPlayer mp;
     int length;
     private ImageView bellImage;
 
@@ -52,8 +53,10 @@ public class MainActivity extends AppCompatActivity {
                 bellImage.startAnimation(myRotation);
                 MediaPlayer mp = (MediaPlayer) MediaPlayer.create(MainActivity.this,R.raw.bell);
                 mp.start();
+
             }
         });
+
     }
 
 
@@ -109,7 +112,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         mediaPlayer.pause();
-        mediaPlayer.release();
         length = mediaPlayer.getCurrentPosition();
     }
 
