@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
         new AppRater(this).show();
 
-        super.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        //super.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.song);
         mediaPlayer.start();
@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                     SimpleDateFormat dateFormat = new SimpleDateFormat(
                             "yyyy-MM-dd");
                     //set event date//YYYY-MM-DD
-                    Date futureDate = dateFormat.parse("2019-12-26");
+                    Date futureDate = dateFormat.parse("2020-12-26");
                     Date currentDate = new Date();
                     if (!currentDate.after(futureDate)) {
                         long diff = futureDate.getTime()

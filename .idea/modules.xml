@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Christmas Countdown.iml" filepath="$PROJECT_DIR$/Christmas Countdown.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ChristmasCountdown.iml" filepath="$PROJECT_DIR$/ChristmasCountdown.iml" group="ChristmasCountdown" />
+      <module fileurl="file://$PROJECT_DIR$/app/ChristmasCountdown-app.iml" filepath="$PROJECT_DIR$/app/ChristmasCountdown-app.iml" group="ChristmasCountdown/app" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
