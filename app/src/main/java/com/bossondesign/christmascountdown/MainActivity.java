@@ -17,6 +17,8 @@ import java.util.Date;
 
 import kotlin.jvm.internal.Intrinsics;
 
+import static android.media.MediaPlayer.*;
+
 public class MainActivity extends AppCompatActivity {
 
     private TextView txtTimerDay;
@@ -39,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
         //super.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.song);
+        mediaPlayer = create(getApplicationContext(), R.raw.song);
         mediaPlayer.start();
         mediaPlayer.setLooping(true);
 
@@ -51,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View arg0) {
                 bellImage.startAnimation(myRotation);
-                MediaPlayer mp = (MediaPlayer) MediaPlayer.create(MainActivity.this,R.raw.bell);
+                MediaPlayer mp = create(MainActivity.this,R.raw.bell);
                 mp.start();
 
             }
