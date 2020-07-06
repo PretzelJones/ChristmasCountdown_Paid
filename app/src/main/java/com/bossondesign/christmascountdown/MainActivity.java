@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
                     SimpleDateFormat dateFormat = new SimpleDateFormat(
                             "yyyy-MM-dd");
                     //set event date//YYYY-MM-DD
-                    Date futureDate = dateFormat.parse("2020-12-26");
+                    Date futureDate = dateFormat.parse(getString(R.string.date));
                     Date currentDate = new Date();
                     if (!currentDate.after(futureDate)) {
                         long diff = futureDate.getTime()

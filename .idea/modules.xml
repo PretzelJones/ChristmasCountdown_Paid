@@ -7,6 +7,8 @@
       <module fileurl="file://$PROJECT_DIR$/Christmas Countdown.iml" filepath="$PROJECT_DIR$/Christmas Countdown.iml" />
       <module fileurl="file://$PROJECT_DIR$/ChristmasCountdown.iml" filepath="$PROJECT_DIR$/ChristmasCountdown.iml" group="ChristmasCountdown" />
       <module fileurl="file://$PROJECT_DIR$/app/ChristmasCountdown-app.iml" filepath="$PROJECT_DIR$/app/ChristmasCountdown-app.iml" group="ChristmasCountdown/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Projects-Android-ChristmasCountdown.iml" filepath="$PROJECT_DIR$/.idea/modules/Projects-Android-ChristmasCountdown.iml" group="ChristmasCountdown" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Projects-Android-ChristmasCountdown-app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Projects-Android-ChristmasCountdown-app.iml" group="ChristmasCountdown/app" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
