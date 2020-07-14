@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import kotlin.jvm.internal.Intrinsics;
@@ -44,8 +45,6 @@ public class MainActivity extends AppCompatActivity {
         mediaPlayer = create(getApplicationContext(), R.raw.song);
         mediaPlayer.start();
         mediaPlayer.setLooping(true);
-
-
         //bell rocking animation
         bellImage = findViewById(R.id.imageView);
         final Animation myRotation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.animation);
@@ -55,12 +54,9 @@ public class MainActivity extends AppCompatActivity {
                 bellImage.startAnimation(myRotation);
                 MediaPlayer mp = create(MainActivity.this,R.raw.bell);
                 mp.start();
-
             }
         });
-
     }
-
 
     public void countDownStart() {
         handler = new Handler();
@@ -69,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 handler.postDelayed(this, 1000);
                 try {
+//                    Calendar.getInstance().get(Calendar.YEAR);
                     SimpleDateFormat dateFormat = new SimpleDateFormat(
                             "yyyy-MM-dd");
                     //set event date//YYYY-MM-DD
