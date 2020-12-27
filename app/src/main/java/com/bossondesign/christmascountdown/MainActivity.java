@@ -1,6 +1,5 @@
 package com.bossondesign.christmascountdown;
 
-import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -13,19 +12,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
-import kotlin.jvm.internal.Intrinsics;
-
-import static android.media.MediaPlayer.*;
+import static android.media.MediaPlayer.create;
 
 public class MainActivity extends AppCompatActivity {
 
     private TextView txtTimerDay;
     private TextView tvEvent;
     private Handler handler;
-    private Runnable runnable;
     MediaPlayer mediaPlayer;
     MediaPlayer mp;
     int length;
@@ -60,7 +55,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void countDownStart() {
         handler = new Handler();
-        runnable = new Runnable() {
+        //                    Calendar.getInstance().get(Calendar.YEAR);
+        //set event date//YYYY-MM-DD
+        Runnable runnable = new Runnable() {
             @Override
             public void run() {
                 handler.postDelayed(this, 1000);
@@ -72,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
                     Date futureDate = dateFormat.parse(getString(R.string.date));
                     Date currentDate = new Date();
                     if (!currentDate.after(futureDate)) {
+                        assert futureDate != null;
                         long diff = futureDate.getTime()
                                 - currentDate.getTime();
                         long days = diff / (24 * 60 * 60 * 1000);
@@ -94,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        handler.postDelayed(runnable, 1 * 1000);
+        handler.postDelayed(runnable, 1000);
     }
 
     public void textViewGone() {

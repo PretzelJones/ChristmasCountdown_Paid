@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Android-ChristmasCountdown.iml" filepath="$PROJECT_DIR$/Android-ChristmasCountdown.iml" group="ChristmasCountdown" />
-      <module fileurl="file://$PROJECT_DIR$/app/Android-ChristmasCountdown-app.iml" filepath="$PROJECT_DIR$/app/Android-ChristmasCountdown-app.iml" group="ChristmasCountdown/app" />
-      <module fileurl="file://$PROJECT_DIR$/Christmas Countdown.iml" filepath="$PROJECT_DIR$/Christmas Countdown.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ChristmasCountdown.iml" filepath="$PROJECT_DIR$/ChristmasCountdown.iml" group="ChristmasCountdown" />
-      <module fileurl="file://$PROJECT_DIR$/app/ChristmasCountdown-app.iml" filepath="$PROJECT_DIR$/app/ChristmasCountdown-app.iml" group="ChristmasCountdown/app" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Projects-Android-ChristmasCountdown.iml" filepath="$PROJECT_DIR$/.idea/modules/Projects-Android-ChristmasCountdown.iml" group="ChristmasCountdown" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Projects-Android-ChristmasCountdown-app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Projects-Android-ChristmasCountdown-app.iml" group="ChristmasCountdown/app" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Android.ChristmasCountdown.iml" filepath="$PROJECT_DIR$/.idea/modules/Android.ChristmasCountdown.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/ChristmasCountdown.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/ChristmasCountdown.app.iml" />
     </modules>
   </component>
 </project>
