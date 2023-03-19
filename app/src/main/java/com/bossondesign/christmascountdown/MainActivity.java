@@ -1,39 +1,133 @@
 package com.bossondesign.christmascountdown;
 
+import static android.media.MediaPlayer.create;
+
 import android.content.res.Configuration;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.os.Handler;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
-
-import static android.media.MediaPlayer.create;
+import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView txtTimerDay;
-    private TextView tvEvent;
-    private Handler handler;
     MediaPlayer mediaPlayer;
-    MediaPlayer mp;
     int length;
     private ImageView bellImage;
+
+    private TextView countdownTextView;
+
+    private CountDownTimer countDownTimer;
+
+    TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        txtTimerDay = findViewById(R.id.txtTimerDay);
-        countDownStart();
+        TextView txtTimerDay = findViewById(R.id.txtTimerDay);
+        //countDownStart();
 
         new AppRater(this).show();
+
+        countdownTextView = findViewById(R.id.txtTimerDay);
+
+        // New ChatGPT generated code
+
+        // Get current date
+        Calendar calendar = Calendar.getInstance();
+        Date currentDate = calendar.getTime();
+
+        // Set next Christmas date
+        calendar.set(Calendar.MONTH, Calendar.DECEMBER);
+        calendar.set(Calendar.DAY_OF_MONTH, 25);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+
+        Date nextChristmasDate = calendar.getTime();
+
+        // Check if it's already Christmas
+        if (currentDate.after(nextChristmasDate)) {
+            // Set next Christmas date to next year
+            calendar.add(Calendar.YEAR, 1);
+            nextChristmasDate = calendar.getTime();
+        }
+
+        // Calculate remaining time until next Christmas
+        long diffInMillis = nextChristmasDate.getTime() - currentDate.getTime();
+
+        startCountdownTimer(diffInMillis);
+    }
+
+    private void startCountdownTimer(long millisUntilFinished) {
+        countDownTimer = new CountDownTimer(millisUntilFinished, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                long days = TimeUnit.MILLISECONDS.toDays(millisUntilFinished);
+                long hours = TimeUnit.MILLISECONDS.toHours(millisUntilFinished) % 24;
+                long minutes = TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) % 60;
+                long seconds = TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) % 60;
+
+                //String remainingTime = String.format(Locale.getDefault(), "%02d days %02d:%02d:%02d",
+                //        days, hours, minutes, seconds);
+
+                String remainingTime = String.format(Locale.getDefault(), "%02d days",
+                        days);
+
+                countdownTextView.setText(remainingTime);
+
+                // Check if it's Christmas Eve
+                if (days == 0) {
+                    countdownTextView.setText("It's Christmas Eve!");
+                    findViewById(R.id.dayTillText).setVisibility(View.INVISIBLE);
+                }
+
+                if (days == 365) {
+                    countdownTextView.setText("Merry Christmas!");
+                    findViewById(R.id.dayTillText).setVisibility(View.INVISIBLE);
+                }
+            }
+
+            @Override
+            public void onFinish() {
+                //countdownTextView.setText("Merry Christmas!");
+
+                // Start countdown for next Christmas
+                Calendar calendar = Calendar.getInstance();
+                calendar.add(Calendar.YEAR, 1);
+                calendar.set(Calendar.MONTH, Calendar.DECEMBER);
+                calendar.set(Calendar.DAY_OF_MONTH, 25);
+                calendar.set(Calendar.HOUR_OF_DAY, 0);
+                calendar.set(Calendar.MINUTE, 0);
+                calendar.set(Calendar.SECOND, 0);
+                calendar.set(Calendar.MILLISECOND, 0);
+
+                Date nextChristmasDate = calendar.getTime();
+                long diffInMillis = nextChristmasDate.getTime() - System.currentTimeMillis();
+
+                startCountdownTimer(diffInMillis);
+            }
+        };
+
+        countDownTimer.start();
+
+        // End ChatGPT generated code
+
+        //privacy policy text link
+        textView = findViewById(R.id.textPrivacy);
+        textView.setMovementMethod(LinkMovementMethod.getInstance());
 
         //super.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
@@ -50,59 +144,23 @@ public class MainActivity extends AppCompatActivity {
                 MediaPlayer mp = create(MainActivity.this,R.raw.bell);
                 mp.start();
             }
+
         });
-    }
-
-    public void countDownStart() {
-        handler = new Handler();
-        //                    Calendar.getInstance().get(Calendar.YEAR);
-        //set event date//YYYY-MM-DD
-        Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-                handler.postDelayed(this, 1000);
-                try {
-//                    Calendar.getInstance().get(Calendar.YEAR);
-                    SimpleDateFormat dateFormat = new SimpleDateFormat(
-                            "yyyy-MM-dd");
-                    //set event date//YYYY-MM-DD
-                    Date futureDate = dateFormat.parse(getString(R.string.date));
-                    Date currentDate = new Date();
-                    if (!currentDate.after(futureDate)) {
-                        assert futureDate != null;
-                        long diff = futureDate.getTime()
-                                - currentDate.getTime();
-                        long days = diff / (24 * 60 * 60 * 1000);
-                        diff -= days * (24 * 60 * 60 * 1000);
-                        long hours = diff / (60 * 60 * 1000);
-                        diff -= hours * (60 * 60 * 1000);
-                        long minutes = diff / (60 * 1000);
-                        diff -= minutes * (60 * 1000);
-                        long seconds = diff / 1000;
-                        txtTimerDay.setText("" + String.format("%02d", days));
-
-                    } else {
-                        tvEvent.setVisibility(View.VISIBLE);
-                        tvEvent.setText("The event started!");
-                        textViewGone();
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-
-        handler.postDelayed(runnable, 1000);
-    }
-
-    public void textViewGone() {
-        findViewById(R.id.textView1).setVisibility(View.GONE);
     }
 
     //prevent reload on orientation change - retain state on shift
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        if (countDownTimer != null) {
+            countDownTimer.cancel();
+        }
     }
 
     @Override

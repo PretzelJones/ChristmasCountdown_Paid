@@ -3,6 +3,9 @@
     <string name="christmas">Merry Christmas</string>
     <string name="countdown">Days till Christmas</string>
     <string name="days">Days</string>
-    <string name="date">2021-12-26</string>
+    <string name="date">2022-12-26</string>
+    <string name="christmasTomorrow">2022-12-25</string>
+    <string name="privacy"><a href="https://docs.google.com/document/d/1njc2PRTB-AojqK51gng3SA3ap1QnZMpzZ5qTAqhTjEI/edit?usp=sharing">Privacy Policy</a></string>
 </resources>
+
 
