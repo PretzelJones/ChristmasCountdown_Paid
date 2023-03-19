@@ -35,14 +35,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        TextView txtTimerDay = findViewById(R.id.txtTimerDay);
-        //countDownStart();
 
         new AppRater(this).show();
 
         countdownTextView = findViewById(R.id.txtTimerDay);
-
-        // New ChatGPT generated code
 
         // Get current date
         Calendar calendar = Calendar.getInstance();
@@ -83,19 +79,19 @@ public class MainActivity extends AppCompatActivity {
                 //String remainingTime = String.format(Locale.getDefault(), "%02d days %02d:%02d:%02d",
                 //        days, hours, minutes, seconds);
 
-                String remainingTime = String.format(Locale.getDefault(), "%02d days",
+                String remainingTime = String.format(Locale.getDefault(), "%02d",
                         days);
 
                 countdownTextView.setText(remainingTime);
 
                 // Check if it's Christmas Eve
                 if (days == 0) {
-                    countdownTextView.setText("It's Christmas Eve!");
+                    countdownTextView.setText(R.string.christmasEve);
                     findViewById(R.id.dayTillText).setVisibility(View.INVISIBLE);
                 }
 
                 if (days == 365) {
-                    countdownTextView.setText("Merry Christmas!");
+                    countdownTextView.setText(R.string.christmas);
                     findViewById(R.id.dayTillText).setVisibility(View.INVISIBLE);
                 }
             }
@@ -123,8 +119,6 @@ public class MainActivity extends AppCompatActivity {
 
         countDownTimer.start();
 
-        // End ChatGPT generated code
-
         //privacy policy text link
         textView = findViewById(R.id.textPrivacy);
         textView.setMovementMethod(LinkMovementMethod.getInstance());
@@ -137,17 +131,12 @@ public class MainActivity extends AppCompatActivity {
         //bell rocking animation
         bellImage = findViewById(R.id.imageView);
         final Animation myRotation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.animation);
-        findViewById(R.id.imageView).setOnClickListener(new View.OnClickListener()    {
-            @Override
-            public void onClick(View arg0) {
-                bellImage.startAnimation(myRotation);
-                MediaPlayer mp = create(MainActivity.this,R.raw.bell);
-                mp.start();
-            }
-
+        findViewById(R.id.imageView).setOnClickListener((View arg0) -> {
+            bellImage.startAnimation(myRotation);
+            MediaPlayer mp = create(MainActivity.this,R.raw.bell);
+            mp.start();
         });
     }
-
     //prevent reload on orientation change - retain state on shift
     @Override
     public void onConfigurationChanged(Configuration newConfig) {

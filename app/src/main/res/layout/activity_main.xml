@@ -45,7 +45,7 @@
         android:layout_below="@+id/txtTimerDay"
         android:layout_centerInParent="true"
         android:layout_marginTop="19dp"
-        android:contentDescription="christmas bell image"
+        android:contentDescription="@string/christmasbellimage"
         app:srcCompat="@drawable/bells" />
 
     <com.jetradarmobile.snowfall.SnowfallView
