@@ -18,7 +18,7 @@
         android:text="@string/countdown"
         android:textAppearance="@android:style/TextAppearance.Material.Medium.Inverse"
         android:textColor="#FFFFFF"
-        android:textSize="36sp" />
+        android:textSize="42sp" />
 
     <TextView
         android:id="@+id/txtTimerDay"
@@ -35,7 +35,7 @@
         android:singleLine="true"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#FFFFFF"
-        android:textSize="46sp"
+        android:textSize="66sp"
         android:textStyle="bold" />
 
     <ImageView

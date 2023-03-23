@@ -27,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView countdownTextView;
 
+    private TextView daystillTextView;
+
     private CountDownTimer countDownTimer;
 
     TextView textView;
@@ -39,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         new AppRater(this).show();
 
         countdownTextView = findViewById(R.id.txtTimerDay);
+        daystillTextView = findViewById(R.id.dayTillText);
 
         // Get current date
         Calendar calendar = Calendar.getInstance();
@@ -46,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Set next Christmas date
         calendar.set(Calendar.MONTH, Calendar.DECEMBER);
-        calendar.set(Calendar.DAY_OF_MONTH, 25);
+        calendar.set(Calendar.DAY_OF_MONTH, 26);
         calendar.set(Calendar.HOUR_OF_DAY, 0);
         calendar.set(Calendar.MINUTE, 0);
         calendar.set(Calendar.SECOND, 0);
@@ -79,32 +82,30 @@ public class MainActivity extends AppCompatActivity {
                 //String remainingTime = String.format(Locale.getDefault(), "%02d days %02d:%02d:%02d",
                 //        days, hours, minutes, seconds);
 
-                String remainingTime = String.format(Locale.getDefault(), "%02d",
+                String remainingTime = String.format(Locale.getDefault(), "%2d",
                         days);
 
                 countdownTextView.setText(remainingTime);
 
                 // Check if it's Christmas Eve
-                if (days == 0) {
-                    countdownTextView.setText(R.string.christmasEve);
-                    findViewById(R.id.dayTillText).setVisibility(View.INVISIBLE);
+                if (days == 1) {
+                    daystillTextView.setText(R.string.christmasEve);
+                    findViewById(R.id.txtTimerDay).setVisibility(View.INVISIBLE);
                 }
 
-                if (days == 365) {
-                    countdownTextView.setText(R.string.christmas);
-                    findViewById(R.id.dayTillText).setVisibility(View.INVISIBLE);
+                if (days == 0) {
+                    daystillTextView.setText(R.string.christmas);
+                    findViewById(R.id.txtTimerDay).setVisibility(View.INVISIBLE);
                 }
             }
 
             @Override
             public void onFinish() {
-                //countdownTextView.setText("Merry Christmas!");
-
                 // Start countdown for next Christmas
                 Calendar calendar = Calendar.getInstance();
                 calendar.add(Calendar.YEAR, 1);
                 calendar.set(Calendar.MONTH, Calendar.DECEMBER);
-                calendar.set(Calendar.DAY_OF_MONTH, 25);
+                calendar.set(Calendar.DAY_OF_MONTH, 26);
                 calendar.set(Calendar.HOUR_OF_DAY, 0);
                 calendar.set(Calendar.MINUTE, 0);
                 calendar.set(Calendar.SECOND, 0);
@@ -146,7 +147,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
         if (countDownTimer != null) {
             countDownTimer.cancel();
         }
