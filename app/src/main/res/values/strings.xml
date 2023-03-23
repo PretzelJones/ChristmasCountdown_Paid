@@ -1,11 +1,9 @@
 <resources>
     <string name="app_name">Christmas Countdown</string>
-    <string name="christmas">Merry Christmas</string>
+    <string name="christmas">Merry Christmas!</string>
     <string name="christmasEve">It\'s Christmas Eve\!</string>
     <string name="countdown">Days till Christmas</string>
     <string name="days">Days</string>
-    <string name="date">2022-12-26</string>
-    <string name="christmasTomorrow">2022-12-25</string>
     <string name="christmasbellimage">christmas bell image</string>
     <string name="privacy"><a href="https://docs.google.com/document/d/1njc2PRTB-AojqK51gng3SA3ap1QnZMpzZ5qTAqhTjEI/edit?usp=sharing">Privacy Policy</a></string>
 </resources>
