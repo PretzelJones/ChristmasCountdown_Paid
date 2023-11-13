@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "440525964143",
+    "project_id": "christmascountdownpaid",
+    "storage_bucket": "christmascountdownpaid.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:440525964143:android:e8eb591362fac298a55e9a",
+        "android_client_info": {
+          "package_name": "com.bossondesign.christmascountdown_paid"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDuIcdbI1aYJAd4HzBKd_vs1rTkQBhkiYY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
