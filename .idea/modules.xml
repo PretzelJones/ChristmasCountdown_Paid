@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/ChristmasCountdown.iml" filepath="$PROJECT_DIR$/.idea/ChristmasCountdown.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/ChristmasCountdown.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/ChristmasCountdown.app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/ChristmasCountdown.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/ChristmasCountdown.app.androidTest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/ChristmasCountdown.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/ChristmasCountdown.app.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/ChristmasCountdown.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/ChristmasCountdown.app.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ChristmasCountdown_paid.iml" filepath="$PROJECT_DIR$/.idea/modules/ChristmasCountdown_paid.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/ChristmasCountdown_paid.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/ChristmasCountdown_paid.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/ChristmasCountdown_paid.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/ChristmasCountdown_paid.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/ChristmasCountdown_paid.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/ChristmasCountdown_paid.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/ChristmasCountdown_paid.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/ChristmasCountdown_paid.app.unitTest.iml" />
     </modules>
   </component>
 </project>

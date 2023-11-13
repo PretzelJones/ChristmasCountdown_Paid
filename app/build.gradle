@@ -4,7 +4,7 @@ apply plugin: 'kotlin-android'
 android {
     compileSdk 34
     defaultConfig {
-        applicationId "com.bossondesign.christmascountdown"
+        applicationId "com.bossondesign.christmascountdown_paid"
         minSdkVersion 21
         targetSdk 34
         versionCode 17
@@ -20,7 +20,7 @@ android {
                 //proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             }
         }
-        namespace 'com.bossondesign.christmascountdown'
+        namespace 'com.bossondesign.christmascountdown_paid'
         //buildToolsVersion '30.0.3'
     }
 

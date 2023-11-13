@@ -1,4 +1,4 @@
-package com.bossondesign.christmascountdown
+package com.bossondesign.christmascountdown_paid
 
 import android.media.MediaPlayer
 import android.os.Bundle
@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() {
 
         textView?.movementMethod = LinkMovementMethod.getInstance()
 
-        mediaPlayer = MediaPlayer.create(applicationContext, R.raw.song)
+        mediaPlayer = MediaPlayer.create(applicationContext, R.raw.merry_christmas)
         mediaPlayer?.start()
         mediaPlayer?.isLooping = true
 

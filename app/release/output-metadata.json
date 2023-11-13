@@ -4,7 +4,7 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "com.bossondesign.christmascountdown",
+  "applicationId": "com.bossondesign.christmascountdown_paid",
   "variantName": "processReleaseResources",
   "elements": [
     {

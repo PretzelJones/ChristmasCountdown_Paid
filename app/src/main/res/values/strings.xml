@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Christmas Countdown</string>
+    <string name="app_name">Christmas Countdown Plus</string>
     <string name="christmas">Merry Christmas!</string>
     <string name="christmasEve">It\'s Christmas Eve\!</string>
     <string name="countdown">Days till Christmas</string>
