@@ -11,10 +11,12 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.play.core.review.ReviewManagerFactory
 import java.util.Calendar
+import java.util.LinkedList
 
 class MainActivity : AppCompatActivity() {
     private var mediaPlayer: MediaPlayer? = null
-    private var bellSoundMediaPlayer: MediaPlayer? = null
+    private val bellSoundMediaPlayers = LinkedList<MediaPlayer>()
+    private val maxMediaPlayerInstances = 10
 
     private var countdownTextView: TextView? = null
     private var daystillTextView: TextView? = null
@@ -126,22 +128,29 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun playBellSound() {
-        // Release any existing MediaPlayer to avoid resource leaks
-        bellSoundMediaPlayer?.release()
+        // Check and release the oldest MediaPlayer if limit is reached
+        if (bellSoundMediaPlayers.size >= maxMediaPlayerInstances) {
+            bellSoundMediaPlayers.poll()?.release()
+        }
 
-        // Create a new MediaPlayer instance for the bell sound
-        bellSoundMediaPlayer = MediaPlayer.create(this@MainActivity, R.raw.bell)
-        bellSoundMediaPlayer?.start()
-
-        // Release the MediaPlayer once the sound is complete
-        bellSoundMediaPlayer?.setOnCompletionListener { mediaPlayer ->
-            mediaPlayer.release()
+        // Create a new MediaPlayer for the bell sound
+        MediaPlayer.create(this, R.raw.bell)?.also { mediaPlayer ->
+            bellSoundMediaPlayers.offer(mediaPlayer)
+            mediaPlayer.start()
+            mediaPlayer.setOnCompletionListener { mp ->
+                mp.release()
+                bellSoundMediaPlayers.remove(mp)
+            }
         }
     }
 
     override fun onDestroy() {
         super.onDestroy()
         countDownTimer?.cancel()
+        // Release bell MediaPlayer instances when the activity is destroyed
+        while (!bellSoundMediaPlayers.isEmpty()) {
+            bellSoundMediaPlayers.poll()?.release()
+        }
     }
 
     override fun onPause() {
