@@ -1,0 +1,54 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/backgrounds"
+        android:title="@string/wallpapers_menu_title">
+        <menu>
+            <item
+                android:id="@+id/red_wall"
+                android:title="@string/red_wall" />
+            <item
+                android:id="@+id/green_wall"
+                android:title="@string/green_wall" />
+            <item
+                android:id="@+id/blue_wall"
+                android:title="@string/blue_wall" />
+            <item
+                android:id="@+id/peach_wall"
+                android:title="@string/peach_wall" />
+            <item
+                android:id="@+id/black_wall"
+                android:title="@string/black_wall" />
+            <item
+                android:id="@+id/grey_wall"
+                android:title="@string/grey_wall" />
+        </menu>
+    </item>
+
+    <item
+        android:id="@+id/theme_music"
+        android:title="@string/theme_music">
+        <menu>
+            <item
+                android:id="@+id/music_merry_christmas"
+                android:title="@string/music_merry_christmas" />
+            <item
+                android:id="@+id/music_christmas_tree"
+                android:title="@string/music_christmas_tree" />
+            <item
+                android:id="@+id/music_deck_halls"
+                android:title="@string/music_deck_halls" />
+            <item
+                android:id="@+id/music_jingle_bells"
+                android:title="@string/music_jingle_bells" />
+            <item
+                android:id="@+id/music_silent_night"
+                android:title="@string/music_silent_night" />
+            <item
+                android:id="@+id/music_holy_night"
+                android:title="@string/music_holy_night" />
+            <item
+                android:id="@+id/music_none"
+                android:title="@string/music_none" />
+        </menu>
+    </item>
+</menu>

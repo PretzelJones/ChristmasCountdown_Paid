@@ -6,6 +6,24 @@
     <string name="days">Days</string>
     <string name="christmasbellimage">christmas bell image</string>
     <string name="privacy"><a href="https://docs.google.com/document/d/1njc2PRTB-AojqK51gng3SA3ap1QnZMpzZ5qTAqhTjEI/edit?usp=sharing">Privacy Policy</a></string>
+    <string name="wallpapers">Wallpapers</string>
+    <string name="theme_music">Theme Music</string>
+    <string name="music_christmas_tree">O Christmas Tree</string>
+    <string name="music_deck_halls">Deck the Halls</string>
+    <string name="music_holy_night">O Holy Night</string>
+    <string name="music_jingle_bells">Jingle Bells</string>
+    <string name="music_merry_christmas">We Wish You A Merry Christmas</string>
+    <string name="music_silent_night">Silent Night</string>
+    <string name="music_none">No Music</string>
+    <string name="wall_red_tree">Red Christmas Tree</string>
+    <string name="wall_blue_tree">Blue Christmas Tree</string>
+    <string name="red_wall">Red</string>
+    <string name="blue_wall">Blue</string>
+    <string name="green_wall">Green</string>
+    <string name="peach_wall">Peach</string>
+    <string name="black_wall">Black</string>
+    <string name="grey_wall">Grey</string>
+    <string name="wallpapers_menu_title">Background Colors</string>
 </resources>
 
 

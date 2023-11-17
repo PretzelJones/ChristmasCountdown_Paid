@@ -14,10 +14,16 @@ class ChristmasCountdownManager(private val listener: CountdownListener) {
     }
 
     fun startCountdown() {
+        val currentTime = System.currentTimeMillis()
         val currentYear = Calendar.getInstance().get(Calendar.YEAR)
         christmasDate = calculateChristmasDate(currentYear)
 
-        timer = object : CountDownTimer(christmasDate - System.currentTimeMillis(), 1000) {
+        if (currentTime >= christmasDate) {
+            resetTimer()  // Set the date to the next year's Christmas
+        }
+
+        val millisUntilFinished = christmasDate - currentTime
+        timer = object : CountDownTimer(millisUntilFinished, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 val remainingDays = (millisUntilFinished / (1000 * 60 * 60 * 24)).toInt()
                 when (remainingDays) {
@@ -28,17 +34,18 @@ class ChristmasCountdownManager(private val listener: CountdownListener) {
             }
 
             override fun onFinish() {
-                resetTimer()
+                if (Calendar.getInstance().timeInMillis >= christmasDate) {
+                    resetTimer()
+                }
+                startCountdown()  // Restart the countdown
             }
         }
         timer.start()
     }
 
     private fun resetTimer() {
-        val currentYear = Calendar.getInstance().get(Calendar.YEAR)
-        val nextYear = currentYear + 1
+        val nextYear = Calendar.getInstance().get(Calendar.YEAR) + 1
         christmasDate = calculateChristmasDate(nextYear)
-        startCountdown()
     }
 
     private fun calculateChristmasDate(year: Int): Long {
