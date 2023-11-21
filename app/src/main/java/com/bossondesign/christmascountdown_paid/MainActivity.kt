@@ -1,42 +1,69 @@
 package com.bossondesign.christmascountdown_paid
 
 import android.graphics.Color
-import android.media.MediaPlayer
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
 import android.view.View
-import android.view.animation.AnimationUtils
+import android.view.ViewTreeObserver
 import android.widget.ImageView
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
 import com.google.android.play.core.review.ReviewManagerFactory
-import java.util.LinkedList
 
 class MainActivity : AppCompatActivity(), ChristmasCountdownManager.CountdownListener {
-
-    private val bellSoundMediaPlayers = LinkedList<MediaPlayer>()
-    private val maxMediaPlayerInstances = 10
 
     private var countdownTextView: TextView? = null
     private var daystillTextView: TextView? = null
     private var textView: TextView? = null
-    private var bellImage: ImageView? = null
 
     private lateinit var themeMusicManager: ThemeMusicManager
     private lateinit var wallpaperManager: WallpaperManager
+    private lateinit var decorationManager: DecorationManager
 
-    //private var length = 0
     private lateinit var countdownManager: ChristmasCountdownManager
+    private lateinit var decorationImageView: ImageView
+    private lateinit var mainLayout: RelativeLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        decorationImageView = findViewById(R.id.decorationImageView)
+        mainLayout = findViewById(R.id.main_layout)
+
+        val vto = mainLayout.viewTreeObserver
+        vto.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
+            override fun onGlobalLayout() {
+                mainLayout.viewTreeObserver.removeOnGlobalLayoutListener(this)
+
+                // Initialize DecorationManager with the layout's dimensions
+                decorationManager = DecorationManager(
+                    this@MainActivity,
+                    decorationImageView,
+                    mainLayout.width,
+                    mainLayout.height
+                )
+
+                decorationManager.setDefaultDecoration() // Set default decoration
+
+                decorationImageView.setOnClickListener {
+                    decorationManager.playCurrentSound()
+                    decorationManager.playCurrentAnimation() // Trigger the correct animation
+                }
+            }
+        })
+
+        decorationImageView.setOnClickListener {
+            decorationManager.playCurrentSound()
+            decorationManager.playCurrentAnimation() // Trigger the correct animation
+        }
+
         countdownTextView = findViewById(R.id.txtTimerDay)
         daystillTextView = findViewById(R.id.dayTillText)
         textView = findViewById(R.id.textPrivacy)
-        bellImage = findViewById(R.id.imageView)
+        //bellImage = findViewById(R.id.tree)
 
         showFeedbackDialog()
 
@@ -59,12 +86,6 @@ class MainActivity : AppCompatActivity(), ChristmasCountdownManager.CountdownLis
         // Make both the navigation bar and the status bar transparent
         window.statusBarColor = Color.parseColor("#66000000")
         window.navigationBarColor = Color.TRANSPARENT
-
-        val myRotation = AnimationUtils.loadAnimation(applicationContext, R.anim.animation)
-        bellImage?.setOnClickListener {
-            bellImage?.startAnimation(myRotation)
-            playBellSound()
-        }
 
         val settings = findViewById<ImageView>(R.id.settingsIcon)
         settings.setOnClickListener { view ->
@@ -108,12 +129,18 @@ class MainActivity : AppCompatActivity(), ChristmasCountdownManager.CountdownLis
                     themeMusicManager.saveMusicPreference("holy_night")
                     true
                 }
-                R.id.music_none -> {
-                    themeMusicManager.stopMusicAndSavePreference()
+                R.id.music_holly_jolly  -> {
+                    themeMusicManager.playMusic("holly_jolly")
+                    themeMusicManager.saveMusicPreference("holly_jolly")
                     true
                 }
-                R.id.backgrounds -> {
-                    // Your existing code for backgrounds selection
+                R.id.music_frosty_snowman -> {
+                    themeMusicManager.playMusic("frosty_snowman")
+                    themeMusicManager.saveMusicPreference("frosty_snowman")
+                    true
+                }
+                R.id.music_none -> {
+                    themeMusicManager.stopMusicAndSavePreference()
                     true
                 }
                 R.id.red_wall -> {
@@ -140,39 +167,24 @@ class MainActivity : AppCompatActivity(), ChristmasCountdownManager.CountdownLis
                     wallpaperManager.changeWallpaper("grey_wall")
                     true
                 }
-
+                R.id.jingle_bells -> {
+                    decorationManager.changeDecoration(Decoration.JINGLE_BELLS)
+                    true
+                }
+                R.id.christmas_tree -> {
+                    decorationManager.changeDecoration(Decoration.CHRISTMAS_TREE)
+                    true
+                }
+                R.id.sleigh_bells -> {
+                    decorationManager.changeDecoration(Decoration.SLEIGH_BELLS)
+                    true
+                }
                 else -> false
             }
         }
         popup.show()
     }
 
-    /*
-    private fun showMusicSelectionDialog() {
-        val musicChoices = arrayOf(
-            "christmas_tree",
-            "deck_halls",
-            "holy_night",
-            "jingle_bells",
-            "merry_christmas",
-            "silent_night"
-        )
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("Select Theme Music")
-        builder.setItems(musicChoices) { _, which ->
-            val selectedMusic = musicChoices[which]
-            themeMusicManager.playMusic(selectedMusic)
-            themeMusicManager.saveMusicPreference(selectedMusic)
-        }
-        builder.create().show()
-    }
-
-    private fun showBackgroundSelection() {
-        // Implement a dialog to let the user choose the music
-        // On selection, call themeMusicManager.playMusic(selectedMusicName)
-        // and themeMusicManager.saveMusicPreference(selectedMusicName)
-    }
-*/
     override fun onCountdownUpdate(remainingDays: Int) {
         daystillTextView?.text = getString(R.string.countdown)
         countdownTextView?.text = "$remainingDays"
@@ -198,67 +210,24 @@ class MainActivity : AppCompatActivity(), ChristmasCountdownManager.CountdownLis
         }
     }
 
-    private fun playBellSound() {
-        if (bellSoundMediaPlayers.size >= maxMediaPlayerInstances) {
-            bellSoundMediaPlayers.poll()?.release()
-        }
-        MediaPlayer.create(this, R.raw.bell)?.also { mediaPlayer ->
-            bellSoundMediaPlayers.offer(mediaPlayer)
-
-            mediaPlayer.setVolume(0.3f, 0.3f)
-            mediaPlayer.start()
-            mediaPlayer.setOnCompletionListener { mp ->
-                mp.release()
-                bellSoundMediaPlayers.remove(mp)
-            }
-        }
-    }
-
-    // New lifecycle methods for bell sounds management
-    private fun pauseBellSounds() {
-        bellSoundMediaPlayers.forEach { mediaPlayer ->
-            if (mediaPlayer.isPlaying) {
-                mediaPlayer.pause()
-            }
-        }
-    }
-
-    private fun stopBellSounds() {
-        bellSoundMediaPlayers.forEach { mediaPlayer ->
-            if (mediaPlayer.isPlaying) {
-                mediaPlayer.stop()
-                mediaPlayer.prepare() // Call prepare after stop
-            }
-        }
-    }
-
-    private fun releaseBellSoundMediaPlayers() {
-        while (!bellSoundMediaPlayers.isEmpty()) {
-            bellSoundMediaPlayers.poll()?.release()
-        }
-    }
-
     override fun onPause() {
         super.onPause()
-        themeMusicManager.pauseMusic() // Pause the theme music
-        pauseBellSounds() // Pause the bell sounds
+        themeMusicManager.pauseMusic()
     }
 
     override fun onResume() {
         super.onResume()
-        themeMusicManager.resumeMusic() // Resume the theme music
-        // Resume bell sounds if needed
+        themeMusicManager.resumeMusic()
     }
 
     override fun onStop() {
         super.onStop()
-        // Stop bell sounds if they should not play in the background
-        stopBellSounds()
+        // Any onStop logic for themeMusicManager if needed
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        themeMusicManager.releaseMediaPlayer() // Release the theme music player
-        releaseBellSoundMediaPlayers() // Release the bell sound players
+        themeMusicManager.releaseMediaPlayer()
+        decorationManager.release()
     }
 }

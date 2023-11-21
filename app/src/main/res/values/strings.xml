@@ -24,6 +24,14 @@
     <string name="black_wall">Black</string>
     <string name="grey_wall">Grey</string>
     <string name="wallpapers_menu_title">Background Colors</string>
+    <string name="decorations">Decorations</string>
+    <string name="christmas_bells">Christmas Bells</string>
+    <string name="jingle_bells">Jingle Bells</string>
+    <string name="christmas_tree">Christmas Tree</string>
+    <string name="sleigh_bells">Sleigh Bells</string>
+    <string name="decoration_image">Decoration Image</string>
+    <string name="music_holly_jolly">Holly Jolly Christmas</string>
+    <string name="music_frosty_snowman">Frosty the Snowman</string>
 </resources>
 
 

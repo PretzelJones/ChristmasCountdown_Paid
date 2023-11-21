@@ -3,40 +3,46 @@ package com.bossondesign.christmascountdown_paid
 import android.content.Context
 import android.content.SharedPreferences
 import android.media.MediaPlayer
+import android.os.PowerManager
 
 class ThemeMusicManager(private val context: Context) {
     private var mediaPlayer: MediaPlayer? = null
     private val sharedPrefs: SharedPreferences = context.getSharedPreferences("MusicPreference", Context.MODE_PRIVATE)
     private var resumePosition: Int = 0
+    //private var currentVolume: Float = 1.0f // Default volume
+    private var wakeLock: PowerManager.WakeLock? = null
 
-    fun playMusic(musicName: String? = null) {
-        val selectedMusicName = musicName ?: sharedPrefs.getString("selectedMusic", "merry_christmas")
+    init {
+        val powerManager = context.getSystemService(Context.POWER_SERVICE) as PowerManager
+        wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "MyApp::MusicWakeLock")
+    }
 
-        // Check if the selected music is "none"
+    fun playMusic(musicName: String? = null, volume: Float = 0.3f) {
+        val selectedMusicName = musicName ?: sharedPrefs.getString("selectedMusic", "merry_christmas") ?: "default_music"
+
         if (selectedMusicName == "none") {
             mediaPlayer?.stop()
             mediaPlayer?.release()
             mediaPlayer = null
+            releaseWakeLock() // Release wake lock if held
             return
         }
 
-        // Get the resource ID for the selected music
-        val musicResId = selectedMusicName?.let { getMusicResId(it) }
+        val musicResId = getMusicResId(selectedMusicName)
 
-        // Stop and release any currently playing music
-        if (mediaPlayer?.isPlaying == true) {
-            mediaPlayer?.stop()
-        }
+        mediaPlayer?.stop()
         mediaPlayer?.release()
+        releaseWakeLock() // Release any previously held wake lock
 
-        // Create and start playing the new music
-        mediaPlayer = musicResId?.let {
-            MediaPlayer.create(context, it).apply {
-                isLooping = true
-                start()
-            }
+        mediaPlayer = MediaPlayer.create(context, musicResId).apply {
+            isLooping = true
+            setVolume(volume, volume)
+            start()
         }
+
+        acquireWakeLock() // Acquire a new wake lock
     }
+
 
     fun stopMusicAndSavePreference() {
         this.stopMusic()
@@ -61,8 +67,12 @@ class ThemeMusicManager(private val context: Context) {
 
     fun stopMusic() {
         mediaPlayer?.stop()
+        mediaPlayer?.release()
+        mediaPlayer = null
+        releaseWakeLock() // Release wake lock when stopping music
         resumePosition = 0
     }
+
 
     fun releaseMediaPlayer() {
         mediaPlayer?.release()
@@ -77,6 +87,8 @@ class ThemeMusicManager(private val context: Context) {
             "jingle_bells" -> R.raw.jingle_bells
             "merry_christmas" -> R.raw.merry_christmas
             "silent_night" -> R.raw.silent_night
+            "holly_jolly" -> R.raw.holly_jolly
+            "frosty_snowman" -> R.raw.frosty_snowman
             else -> R.raw.merry_christmas
         }
     }
@@ -90,4 +102,15 @@ class ThemeMusicManager(private val context: Context) {
         }
     }
 
+    private fun acquireWakeLock() {
+        if (wakeLock?.isHeld == false) {
+            wakeLock?.acquire(10*60*1000L /*10 minutes*/)
+        }
+    }
+
+    private fun releaseWakeLock() {
+        if (wakeLock?.isHeld == true) {
+            wakeLock?.release()
+        }
+    }
 }

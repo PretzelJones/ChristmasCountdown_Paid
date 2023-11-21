@@ -47,8 +47,30 @@
                 android:id="@+id/music_holy_night"
                 android:title="@string/music_holy_night" />
             <item
+                android:id="@+id/music_holly_jolly"
+                android:title="@string/music_holly_jolly" />
+            <item
+                android:id="@+id/music_frosty_snowman"
+                android:title="@string/music_frosty_snowman" />
+            <item
                 android:id="@+id/music_none"
                 android:title="@string/music_none" />
+        </menu>
+    </item>
+
+    <item
+        android:id="@+id/decorations"
+        android:title="@string/decorations">
+        <menu>
+            <item
+                android:id="@+id/jingle_bells"
+                android:title="@string/jingle_bells" />
+            <item
+                android:id="@+id/christmas_tree"
+                android:title="@string/christmas_tree" />
+            <item
+                android:id="@+id/sleigh_bells"
+                android:title="@string/sleigh_bells" />
         </menu>
     </item>
 </menu>

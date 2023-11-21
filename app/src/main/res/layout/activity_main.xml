@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,23 +12,35 @@
         android:id="@+id/dayTillText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="107dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="133dp"
+        android:layout_marginEnd="8dp"
+        android:singleLine="true"
         android:fontFamily="cursive"
         android:text="@string/countdown"
         android:textAppearance="@android:style/TextAppearance.Material.Medium.Inverse"
         android:textColor="#FFFFFF"
-        android:textSize="42sp" />
+        android:gravity="center"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:textSize="26sp"
+        android:autoSizeTextType="uniform"
+        android:autoSizeMinTextSize="42sp"
+        android:autoSizeMaxTextSize="100sp"
+        android:autoSizeStepGranularity="1sp"/>
 
     <TextView
         android:id="@+id/txtTimerDay"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="411dp"
+        android:layout_height="147dp"
         android:layout_below="@+id/dayTillText"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="19dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="54dp"
         android:fontFamily="cursive"
         android:gravity="center"
         android:lines="2"
@@ -37,24 +48,26 @@
         android:singleLine="true"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#FFFFFF"
-        android:textSize="66sp"
+        android:textSize="128sp"
         android:textStyle="bold" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/decorationImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:contentDescription="@string/decoration_image"
         android:layout_below="@+id/txtTimerDay"
         android:layout_centerInParent="true"
         android:layout_marginTop="19dp"
-        android:contentDescription="@string/christmasbellimage"
-        app:srcCompat="@drawable/bells" />
+        android:scaleType="fitCenter"/>
 
     <com.jetradarmobile.snowfall.SnowfallView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true" />
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="-4dp"
+        android:layout_marginTop="38dp" />
 
     <TextView
         android:id="@+id/textPrivacy"
@@ -70,12 +83,12 @@
 
     <ImageView
         android:id="@+id/settingsIcon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="66dp"
+        android:layout_height="66dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="35dp"
-        android:layout_marginEnd="25dp"
-        app:srcCompat="@android:drawable/ic_menu_preferences" />
+        android:layout_marginTop="35sp"
+        android:layout_marginEnd="4sp"
+        android:src="@drawable/note_paint" />
 
 </RelativeLayout>
