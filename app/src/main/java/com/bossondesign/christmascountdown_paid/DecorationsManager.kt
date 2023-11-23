@@ -47,10 +47,12 @@ class DecorationManager(private val context: Context,
 
     private fun playAnimation(decoration: Decoration) {
         when (decoration) {
+            Decoration.COCOA_MUG -> Animations.mugAnimation(imageView).start()
             Decoration.JINGLE_BELLS -> Animations.bellAnimation(imageView).start()
-            Decoration.CHRISTMAS_TREE -> Animations.squashAnimation(imageView).start()
-            Decoration.SLEIGH_BELLS -> Animations.flyAwayAnimation(imageView, containerWidth).start()
-            // Add cases for other decorations if needed
+            Decoration.CHRISTMAS_TREE -> Animations.treeShakeAnimation2(imageView).start()
+            Decoration.SLEIGH_BELLS -> Animations.sleighAnimation(imageView).start()
+            Decoration.SNOWMAN -> Animations.swayAnimation(imageView).start()
+            Decoration.NORTH_STAR -> Animations.growAndSpinAnimation(imageView).start()
         }
     }
 
@@ -87,7 +89,10 @@ class DecorationManager(private val context: Context,
 
 enum class Decoration(val imageResId: Int, val soundResId: Int, val volume: Float) {
     JINGLE_BELLS(R.drawable.bells, R.raw.bells_ring, 0.1f),
-    CHRISTMAS_TREE(R.drawable.christmas_tree, R.raw.tree_shake, 0.6f),
-    SLEIGH_BELLS(R.drawable.sleigh_bells, R.raw.sleigh_bells, 1.0f)
+    CHRISTMAS_TREE(R.drawable.christmas_tree, R.raw.tree_shake, 0.5f),
+    COCOA_MUG(R.drawable.cocoa_mug, R.raw.cocoa_plop, 0.5f),
+    SLEIGH_BELLS(R.drawable.sleigh_bells, R.raw.sleigh_bells_short, 1.0f),
+    SNOWMAN(R.drawable.snowman, R.raw.snowman_magic, 0.5f),
+    NORTH_STAR(R.drawable.north_star, R.raw.shootin_star, 0.5f)
     // Add more decorations here
 }

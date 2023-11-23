@@ -89,6 +89,7 @@ class ThemeMusicManager(private val context: Context) {
             "silent_night" -> R.raw.silent_night
             "holly_jolly" -> R.raw.holly_jolly
             "frosty_snowman" -> R.raw.frosty_snowman
+            "joy_world" -> R.raw.joy_world
             else -> R.raw.merry_christmas
         }
     }

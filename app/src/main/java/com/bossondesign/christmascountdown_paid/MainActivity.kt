@@ -139,6 +139,11 @@ class MainActivity : AppCompatActivity(), ChristmasCountdownManager.CountdownLis
                     themeMusicManager.saveMusicPreference("frosty_snowman")
                     true
                 }
+                R.id.music_joy_world -> {
+                    themeMusicManager.playMusic("joy_world")
+                    themeMusicManager.saveMusicPreference("joy_world")
+                    true
+                }
                 R.id.music_none -> {
                     themeMusicManager.stopMusicAndSavePreference()
                     true
@@ -177,6 +182,18 @@ class MainActivity : AppCompatActivity(), ChristmasCountdownManager.CountdownLis
                 }
                 R.id.sleigh_bells -> {
                     decorationManager.changeDecoration(Decoration.SLEIGH_BELLS)
+                    true
+                }
+                R.id.cocoa_mug -> {
+                    decorationManager.changeDecoration(Decoration.COCOA_MUG)
+                    true
+                }
+                R.id.snowman -> {
+                    decorationManager.changeDecoration(Decoration.SNOWMAN)
+                    true
+                }
+                R.id.north_star -> {
+                    decorationManager.changeDecoration(Decoration.NORTH_STAR)
                     true
                 }
                 else -> false

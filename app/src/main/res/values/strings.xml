@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Christmas Countdown Plus</string>
+    <string name="app_name">Christmas Countdown Deluxw</string>
     <string name="christmas">Merry Christmas!</string>
     <string name="christmasEve">It\'s Christmas Eve\!</string>
     <string name="countdown">Days till Christmas</string>
@@ -26,12 +26,18 @@
     <string name="wallpapers_menu_title">Background Colors</string>
     <string name="decorations">Decorations</string>
     <string name="christmas_bells">Christmas Bells</string>
-    <string name="jingle_bells">Jingle Bells</string>
+    <string name="jingle_bells">Christmas Bells</string>
     <string name="christmas_tree">Christmas Tree</string>
-    <string name="sleigh_bells">Sleigh Bells</string>
+    <string name="sleigh_bells">Santa\'s Sleigh</string>
     <string name="decoration_image">Decoration Image</string>
     <string name="music_holly_jolly">Holly Jolly Christmas</string>
     <string name="music_frosty_snowman">Frosty the Snowman</string>
+    <string name="cocoa_mug">Christmas Cocoa</string>
+    <string name="music_rockin_tree">Rockin\' Around the Christmas Tree</string>
+    <string name="jingle_bell_rock">Jingle Bell Rock</string>
+    <string name="snowman">Frosty Snowman</string>
+    <string name="music_joy_world">Joy to the World</string>
+    <string name="north_star">Christmas Star</string>
 </resources>
 
 

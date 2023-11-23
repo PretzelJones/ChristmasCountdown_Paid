@@ -53,6 +53,9 @@
                 android:id="@+id/music_frosty_snowman"
                 android:title="@string/music_frosty_snowman" />
             <item
+                android:id="@+id/music_joy_world"
+                android:title="@string/music_joy_world" />
+            <item
                 android:id="@+id/music_none"
                 android:title="@string/music_none" />
         </menu>
@@ -71,6 +74,15 @@
             <item
                 android:id="@+id/sleigh_bells"
                 android:title="@string/sleigh_bells" />
+            <item
+                android:id="@+id/cocoa_mug"
+                android:title="@string/cocoa_mug" />
+            <item
+                android:id="@+id/snowman"
+                android:title="@string/snowman" />
+            <item
+                android:id="@+id/north_star"
+                android:title="@string/north_star" />
         </menu>
     </item>
 </menu>

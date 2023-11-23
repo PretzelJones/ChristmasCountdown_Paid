@@ -5,7 +5,78 @@ import android.animation.ObjectAnimator
 import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
 
+
 object Animations {
+
+    fun growAndSpinAnimation(view: View): AnimatorSet {
+        val totalDuration = 1000L // Total duration of the animation sequence in milliseconds
+
+        // Scale the star larger, making the animation twice as fast
+        val scaleUpX = ObjectAnimator.ofFloat(view, "scaleX", 1f, 1.5f).setDuration(totalDuration / 4)
+        val scaleUpY = ObjectAnimator.ofFloat(view, "scaleY", 1f, 1.5f).setDuration(totalDuration / 4)
+
+        // Rotate the star quickly
+        val rotate = ObjectAnimator.ofFloat(view, "rotation", 0f, 360f).setDuration(totalDuration / 2)
+
+        // Scale the star back to its original size
+        val scaleDownX = ObjectAnimator.ofFloat(view, "scaleX", 1.5f, 1f).setDuration(totalDuration / 4)
+        val scaleDownY = ObjectAnimator.ofFloat(view, "scaleY", 1.5f, 1f).setDuration(totalDuration / 4)
+
+        // AnimatorSet to manage the timing of each animation
+        val animatorSet = AnimatorSet().apply {
+            // Play scale-up animations
+            play(scaleUpX).with(scaleUpY)
+            // Start rotation halfway through the scale-up animations
+            play(rotate).after(scaleUpX.duration / 2)
+            // Start scale-down animations immediately after the rotation
+            play(scaleDownX).with(scaleDownY).after(rotate)
+        }
+
+        return animatorSet
+    }
+
+    fun swayAnimation(view: View): AnimatorSet {
+        // Define the rotation for the sway to the left
+        val rotateToLeft = ObjectAnimator.ofFloat(view, "rotation", 0f, -10f)
+        val resetRotation = ObjectAnimator.ofFloat(view, "rotation", -10f, 0f)
+
+        // Set a shorter duration for a faster animation
+        val duration = 250L // duration in milliseconds
+
+        // Set interpolator for natural motion
+        val interpolator = AccelerateDecelerateInterpolator()
+        rotateToLeft.duration = duration
+        resetRotation.duration = duration
+        rotateToLeft.interpolator = interpolator
+        resetRotation.interpolator = interpolator
+
+        // Combine the rotations into an AnimatorSet for sequential play
+        val animatorSet = AnimatorSet()
+        animatorSet.playSequentially(rotateToLeft, resetRotation)
+
+        return animatorSet
+    }
+
+fun sleighAnimation(view: View): AnimatorSet {
+    // Define the vertical movement (slight lift and drop)
+    val moveUp = ObjectAnimator.ofFloat(view, "translationY", 0f, -30f)
+    val moveDown = ObjectAnimator.ofFloat(view, "translationY", -30f, 0f)
+
+    // Set duration for the up and down movements
+    moveUp.duration = 500 // 0.5 seconds to move up
+    moveDown.duration = 100 // 0.5 seconds to move down
+
+    // Set interpolators for natural motion
+    val interpolator = AccelerateDecelerateInterpolator()
+    moveUp.interpolator = interpolator
+    moveDown.interpolator = interpolator
+
+    // Combine the animations into an AnimatorSet for sequential play
+    val animatorSet = AnimatorSet()
+    animatorSet.playSequentially(moveUp, moveDown)
+
+    return animatorSet
+}
 
     fun squashAnimation(view: View): AnimatorSet {
         val scaleX = ObjectAnimator.ofFloat(view, "scaleY", 1f, 1.2f, 1f)
@@ -28,6 +99,66 @@ object Animations {
         rotate.interpolator = AccelerateDecelerateInterpolator()
         return rotate
     }
+
+
+    fun mugAnimation(view: View): AnimatorSet {
+        val scaleX = ObjectAnimator.ofFloat(view, "scaleX", 1f, 1.05f, 1f)
+        val scaleY = ObjectAnimator.ofFloat(view, "scaleY", 1f, 1.05f, 1f)
+        val rotate = ObjectAnimator.ofFloat(view, "rotation", 0f, 5f, -5f, 0f)
+
+        scaleX.duration = 500
+        scaleY.duration = 500
+        rotate.duration = 500
+
+        val animatorSet = AnimatorSet()
+        animatorSet.playTogether(scaleX, scaleY, rotate)
+        animatorSet.interpolator = AccelerateDecelerateInterpolator()
+        return animatorSet
+    }
+
+    fun treeShakeAnimation2(view: View): ObjectAnimator {
+        val animator = ObjectAnimator.ofFloat(view, "translationX", 0f, 25f, -25f, 25f, -25f, 15f, -15f, 6f, -6f, 0f)
+
+        animator.duration = 1000
+        return animator
+    }
+
+    fun treeShakeAnimation(view: View): AnimatorSet {
+            val originalPosition = view.translationX
+
+            // Create the movement animations
+            val moveRight = ObjectAnimator.ofFloat(view, "translationX", originalPosition, originalPosition + 20f)
+            val moveLeft = ObjectAnimator.ofFloat(view, "translationX", originalPosition + 20f, originalPosition - 20f)
+            val moveBackRight = ObjectAnimator.ofFloat(view, "translationX", originalPosition - 20f, originalPosition + 20f)
+            val resetPosition = ObjectAnimator.ofFloat(view, "translationX", originalPosition + 20f, originalPosition)
+
+            // Set the duration for each part of the animation
+            val duration = 100L
+            moveRight.duration = duration
+            moveLeft.duration = duration
+            moveBackRight.duration = duration
+            resetPosition.duration = duration
+
+            // Create an AnimatorSet and sequence the animations
+            val animatorSet = AnimatorSet()
+            animatorSet.playSequentially(moveRight, moveLeft, moveBackRight, resetPosition)
+            animatorSet.interpolator = AccelerateDecelerateInterpolator()
+
+            // Add a listener to reset the view's position after the animation and cancel any ongoing animation
+            animatorSet.addListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: Animator) {
+                    super.onAnimationEnd(animation)
+                    view.translationX = originalPosition
+                }
+
+                override fun onAnimationCancel(animation: Animator) {
+                    super.onAnimationCancel(animation)
+                    view.translationX = originalPosition
+                }
+            })
+
+            return animatorSet
+        }
 
     fun flyAwayAnimation(view: View, containerWidth: Int): AnimatorSet {
         val targetScale = 0.1f  // Target scale for the shrink animation
@@ -75,5 +206,4 @@ object Animations {
         return set
     }
 
-    // You can add more animations here in the future
 }
