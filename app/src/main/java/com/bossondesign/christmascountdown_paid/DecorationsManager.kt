@@ -1,6 +1,5 @@
 package com.bossondesign.christmascountdown_paid
 
-import Animations
 import android.content.Context
 import android.media.MediaPlayer
 import android.widget.ImageView
@@ -93,6 +92,6 @@ enum class Decoration(val imageResId: Int, val soundResId: Int, val volume: Floa
     COCOA_MUG(R.drawable.cocoa_mug, R.raw.cocoa_plop, 0.5f),
     SLEIGH_BELLS(R.drawable.sleigh_bells, R.raw.sleigh_bells_short, 1.0f),
     SNOWMAN(R.drawable.snowman, R.raw.snowman_magic, 0.5f),
-    NORTH_STAR(R.drawable.north_star, R.raw.shootin_star, 0.5f)
+    NORTH_STAR(R.drawable.north_star, R.raw.chime, 0.5f)
     // Add more decorations here
 }

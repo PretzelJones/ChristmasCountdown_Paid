@@ -1,10 +1,11 @@
+package com.bossondesign.christmascountdown_paid
+
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
-
 
 object Animations {
 
@@ -16,7 +17,7 @@ object Animations {
         val scaleUpY = ObjectAnimator.ofFloat(view, "scaleY", 1f, 1.5f).setDuration(totalDuration / 4)
 
         // Rotate the star quickly
-        val rotate = ObjectAnimator.ofFloat(view, "rotation", 0f, 360f).setDuration(totalDuration / 2)
+        val rotate = ObjectAnimator.ofFloat(view, "rotation", 0f, 360f).setDuration(totalDuration / 1)
 
         // Scale the star back to its original size
         val scaleDownX = ObjectAnimator.ofFloat(view, "scaleX", 1.5f, 1f).setDuration(totalDuration / 4)
