@@ -10,6 +10,7 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
+import androidx.core.content.res.ResourcesCompat
 import com.google.android.play.core.review.ReviewManagerFactory
 
 class MainActivity : AppCompatActivity(), ChristmasCountdownManager.CountdownListener {
@@ -78,6 +79,9 @@ class MainActivity : AppCompatActivity(), ChristmasCountdownManager.CountdownLis
         // Initialize WallpaperManager with the layout ID
         wallpaperManager = WallpaperManager(this, R.id.main_layout)
         wallpaperManager.loadWallpaperPreference()
+
+        // Apply saved font choice
+        applySavedFontChoice()
 
         window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                 or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
@@ -196,10 +200,42 @@ class MainActivity : AppCompatActivity(), ChristmasCountdownManager.CountdownLis
                     decorationManager.changeDecoration(Decoration.NORTH_STAR)
                     true
                 }
+                // Handle font change
+                R.id.font_home_christmas -> {
+                    changeFont(R.font.homechristmas)
+                    true
+                }
+                R.id.font_heavenly_christmas -> {
+                    changeFont(R.font.heavenly_christmas)
+                    true
+                }
+                R.id.font_merrychristmasflake -> {
+                    changeFont(R.font.merrychristmasflake)
+                    true
+                }
                 else -> false
             }
         }
         popup.show()
+    }
+
+    // Method to change the font of TextViews
+    private fun changeFont(fontId: Int) {
+        val typeface = ResourcesCompat.getFont(this, fontId)
+        daystillTextView?.typeface = typeface
+        //countdownTextView?.typeface = typeface
+
+        // Save the font choice
+        val sharedPreferences = getSharedPreferences("AppSettings", MODE_PRIVATE)
+        sharedPreferences.edit().putInt("SelectedFont", fontId).apply()
+    }
+
+    private fun applySavedFontChoice() {
+        val sharedPreferences = getSharedPreferences("AppSettings", MODE_PRIVATE)
+        val fontId = sharedPreferences.getInt("SelectedFont", R.font.homechristmas) // Default font
+        val typeface = ResourcesCompat.getFont(this, fontId)
+        daystillTextView?.typeface = typeface
+        //countdownTextView?.typeface = typeface
     }
 
     override fun onCountdownUpdate(remainingDays: Int) {

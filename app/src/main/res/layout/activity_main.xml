@@ -32,7 +32,6 @@
         android:autoSizeMinTextSize="10sp"
         android:autoSizeStepGranularity="2sp"
         android:autoSizeTextType="uniform"
-        android:fontFamily="@font/homechristmas"
         android:gravity="center"
         android:text="@string/countdown"
         android:textAppearance="@android:style/TextAppearance.Material.Medium.Inverse"

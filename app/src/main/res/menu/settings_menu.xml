@@ -85,4 +85,20 @@
                 android:title="@string/north_star" />
         </menu>
     </item>
+
+    <item
+        android:id="@+id/font_change"
+        android:title="@string/font_change">
+        <menu>
+            <item
+                android:id="@+id/font_home_christmas"
+                android:title="@string/font_home_christmas" />
+            <item
+                android:id="@+id/font_heavenly_christmas"
+                android:title="@string/font_heavenly_christmas" />
+            <item
+                android:id="@+id/font_merrychristmasflake"
+                android:title="@string/font_merrychristmasflake" />
+        </menu>
+    </item>
 </menu>

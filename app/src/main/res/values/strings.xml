@@ -38,6 +38,11 @@
     <string name="snowman">Frosty Snowman</string>
     <string name="music_joy_world">Joy to the World</string>
     <string name="north_star">Christmas Star</string>
+    <string name="font_change">Change Font</string>
+    <string name="font_home_christmas">Home For Christmas</string>
+    <string name="font_heavenly_christmas">A Heavenly Christmas</string>
+    <string name="font_merrychristmasflake">Merry Christmas Snowflake</string>
+
 </resources>
 
 
