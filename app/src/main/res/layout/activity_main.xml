@@ -6,6 +6,7 @@
     android:background="@drawable/red"
     android:id="@+id/main_layout"
     tools:context=".MainActivity"
+    android:keepScreenOn="true"
     android:fitsSystemWindows="false">
 
     <ImageView
