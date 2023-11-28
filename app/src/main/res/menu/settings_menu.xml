@@ -99,6 +99,24 @@
             <item
                 android:id="@+id/font_merrychristmasflake"
                 android:title="@string/font_merrychristmasflake" />
+            <item
+                android:id="@+id/font_christmas_spirit"
+                android:title="@string/font_christmas_spirit" />
+            <item
+                android:id="@+id/font_evening_snow"
+                android:title="@string/font_evening_snow" />
+            <item
+                android:id="@+id/font_winter_festival"
+                android:title="@string/font_winter_festival" />
+            <item
+                android:id="@+id/font_christmas_eve"
+                android:title="@string/font_christmas_eve" />
+            <item
+                android:id="@+id/font_snow_fall"
+                android:title="@string/font_snow_fall" />
+            <item
+                android:id="@+id/font_starry_night"
+                android:title="@string/font_starry_night" />
         </menu>
     </item>
 </menu>

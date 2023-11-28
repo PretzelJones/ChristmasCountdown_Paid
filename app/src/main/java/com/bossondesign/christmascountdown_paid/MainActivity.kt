@@ -213,6 +213,31 @@ class MainActivity : AppCompatActivity(), ChristmasCountdownManager.CountdownLis
                     changeFont(R.font.merrychristmasflake)
                     true
                 }
+                R.id.font_christmas_spirit -> {
+                    changeFont(R.font.christmas_spirit)
+                    true
+                }
+                R.id.font_evening_snow -> {
+                    changeFont(R.font.snow_fall)
+                    true
+                }
+                R.id.font_winter_festival ->
+                {
+                    changeFont(R.font.winter_festival)
+                    true
+                }
+                R.id.font_christmas_eve -> {
+                    changeFont(R.font.christmas_eve)
+                    true
+                }
+                R.id.font_snow_fall -> {
+                    changeFont(R.font.snow_fall)
+                    true
+                }
+                R.id.font_starry_night -> {
+                    changeFont(R.font.starry_night)
+                    true
+                }
                 else -> false
             }
         }

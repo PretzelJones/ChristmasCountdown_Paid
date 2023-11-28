@@ -42,6 +42,13 @@
     <string name="font_home_christmas">Home For Christmas</string>
     <string name="font_heavenly_christmas">A Heavenly Christmas</string>
     <string name="font_merrychristmasflake">Merry Christmas Snowflake</string>
+    <string name="font_christmas_joy">Christmas Joy</string>
+    <string name="font_christmas_spirit">Christmas Spirit</string>
+    <string name="font_winter_festival">Winter Festival</string>
+    <string name="font_evening_snow">Evening Snow</string>
+    <string name="font_christmas_eve">Christmas Eve</string>
+    <string name="font_snow_fall">Snowfall</string>
+    <string name="font_starry_night">Starry Night</string>
 
 </resources>
 
